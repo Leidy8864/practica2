@@ -59,68 +59,46 @@
 
   <div class="container-contact100">
     <div class="wrap-contact100">
-      <h5 class="section-title h1">Usuarios</h5>
+      <h5 class="section-title h1">Lista de contactos</h5>
       <div class="row">
+        <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Birthdate</th>
+            <th>Foto</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <% items.forEach(function(item){ %>
+          <tr>
+            <td><%= item.nombre %></td>
+            <td><%= item.apellidos %></td>
+            <td><%= item.email %></td>
+            <td><%= moment(item.nacimiento).format('DD-MM-YYYY'); %></td>
+            <td>
+                <img src='https://s3.amazonaws.com/lcallupepractica2/<%=item.foto %>' alt="..." class="img-thumbnail" width="200px">
+            </td>
+            <td>
+                <a class="btn btn-primary" href="/update/<%= item._id %>" style="color: aliceblue">
+                  <span style="color: aliceblue">Actualizar</span>
+                </a>
+            </td>
+            <td>
+                <form action="/delete" method="POST" enctype="multipart/form-data">
+                  <input type="hidden" name="id" value='<%= item._id %>'>
+                  <button type="submit" class="btn btn-danger" style="color: aliceblue">
+                    <span style="color: aliceblue">Eliminar</span></button>
+                </form>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
 
-        <% items.forEach(function(item){ %>
-        <!-- Team member -->
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-            <div class="mainflip">
-              <div class="frontside">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <p><img class=" img-fluid"
-                        src='https://s3.amazonaws.com/lcallupepractica2/<%=item.foto %>' alt="card image"></p>
-                    <h4 class="card-title">
-                      <%= item.nombre %>
-                    </h4>
-                    <p class="card-text">
-                      <%= item.email %>
-                    </p>
-                    </div>
-                </div>
-              </div>
-              <div class="backside">
-                <div class="card">
-                  <div class="card-body text-center mt-4">
-                    <h4 class="card-title">Datos Personales</h4>
-                    <ul class="text-justify" style="list-style: none;">
-                      <li><strong>Nombres:</strong>
-                        <%= item.nombre %>
-                      </li>
-                      <li><strong>Apellidos:</strong>
-                        <%= item.apellidos %>
-                      </li>
-                      <li><strong>Email:</strong>
-                        <%= item.email %>
-                      </li>
-                      <li><strong>Nacimento:</strong>
-                        <%= moment(item.nacimiento).format('DD-MM-YYYY'); %>
-                      </li>
-                    </ul>
-
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a class="btn btn-primary" href="/update/<%= item._id %>" style="color: aliceblue">
-                          <span style="color: aliceblue">Actualizar</span>
-                        </a>
-                      </li>
-                      <li class="list-inline-item">
-                        <form action="/delete" method="POST" enctype="multipart/form-data">
-                          <input type="hidden" name="id" value='<%= item._id %>'>
-                          <button type="submit" class="btn btn-danger" style="color: aliceblue">
-                            <span style="color: aliceblue">Eliminar</span></button>
-                        </form>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% }); %>
       </div>
     </div>
   </div>

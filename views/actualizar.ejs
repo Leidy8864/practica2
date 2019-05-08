@@ -56,7 +56,8 @@
     
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="/cargar" method="POST" enctype="multipart/form-data">
+			<form class="contact100-form validate-form" action="/update" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="id" value='<%= usuario._id %>'>
 				<span class="contact100-form-title">
 					Crear usuario
 				</span>

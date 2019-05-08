@@ -6,7 +6,7 @@ const formidableMiddleware = require('express-formidable');
 var logger = require('morgan');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/practica2')
+mongoose.connect('mongodb://localhost/practica2',  { useNewUrlParser: true })
 
 var usuariosRoutes = require('./routes/users')
 
